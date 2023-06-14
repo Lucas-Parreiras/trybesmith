@@ -6,12 +6,11 @@ import { OrderWithDirectIds } from '../types/Order';
 
 async function getAllOrders(): Promise<ServResponse<OrderWithDirectIds[]>> {
   const allOrders = await OrderModel.findAll({
-    include: [
-      {
-        model: ProductModel,
-        as: 'productIds',
-        attributes: ['id'],
-      },
+    include: [{
+      model: ProductModel,
+      as: 'productIds',
+      attributes: ['id'],
+    },
     ],
   }) as OrderInListSequelizeModel[];
   const allOrdersResult = allOrders.map((order) => {
