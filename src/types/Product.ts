@@ -5,7 +5,7 @@ export type Product = {
   orderId: number;
 };
 
-export type ResponseProduct = {
+export type ResProduct = {
   id: number;
   name: string;
   price: string;

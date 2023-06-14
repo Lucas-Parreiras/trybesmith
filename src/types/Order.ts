@@ -1,5 +1,14 @@
 export type Order = {
   id: number;
   userId: number;
-  productId?: number;
+};
+
+export type OrderInList = Order & {
+  productIds: {
+    id: number;
+  }[];
+};
+
+export type OrderWithDirectIds = Order & {
+  productIds: number[];
 };

@@ -1,14 +1,14 @@
 import ProductModel,
-{ ProductInputtableTypes, ProductSequelizeModel } from '../database/models/product.model';
-import { ResponseProduct } from '../types/Product';
-import { ServiceResponse } from '../types/ServiceResponse';
+{ ProductInputtableTypes } from '../database/models/product.model';
+import { ResProduct, Product } from '../types/Product';
+import { ServResponse } from '../types/ServiceResponse';
 
-async function addNewProduct(product: ProductInputtableTypes): Promise<ServiceResponse<ResponseProduct>> {
+async function addNewProduct(product: ProductInputtableTypes): Promise<ServResponse<ResProduct>> {
   const newProduct = await ProductModel.create(product);
 
   const { id, name, price } = newProduct.dataValues;
 
-  const responseService: ServiceResponse<ResponseProduct> = {
+  const responseService: ServResponse<ResProduct> = {
     status: 'SUCCESSFUL',
     data: { id, name, price },
   };
@@ -16,12 +16,14 @@ async function addNewProduct(product: ProductInputtableTypes): Promise<ServiceRe
   return responseService;
 }
 
-async function listAllProducts(): Promise<ServiceResponse<ProductSequelizeModel[]>> {
+async function listAllProducts(): Promise<ServResponse<Product[]>> {
   const productList = await ProductModel.findAll();
 
-  const responseService: ServiceResponse<ProductSequelizeModel[]> = {
+  const responseList = productList.map((p) => p.dataValues);
+
+  const responseService: ServResponse<Product[]> = {
     status: 'SUCCESSFUL',
-    data: productList,
+    data: responseList,
   };
 
   return responseService;
