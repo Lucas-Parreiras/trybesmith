@@ -14,18 +14,15 @@ async function getAllOrders(): Promise<ServResponse<OrderWithDirectIds[]>> {
       },
     ],
   }) as OrderInListSequelizeModel[];
-
   const allOrdersResult = allOrders.map((order) => {
     const { id, userId, productIds } = order.dataValues;
     const directIds = productIds.map((prodId) => prodId.id);
     return { id, userId, productIds: directIds };
   });
-
   const serviceResponse: ServResponse<OrderWithDirectIds[]> = {
     status: 'SUCCESSFUL',
     data: allOrdersResult,
   };
-
   return serviceResponse;
 }
 
