@@ -1,7 +1,10 @@
-export default function mapStatusHTTP(status: string): number {
-  const statusHTTPMap: Record<string, number> = {
+import HttpError from '../types/HttpError';
+
+export default function mapStatusHTTP(status: HttpError): number {
+  const statusHTTPMap: Record<HttpError, number> = {
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
+    NOT_FOUND: 404,
     UNPROCESSABLE_ENTITY: 422,
   };
 

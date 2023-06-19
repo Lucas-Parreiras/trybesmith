@@ -12,3 +12,8 @@ export type OrderInList = Order & {
 export type OrderWithDirectIds = Order & {
   productIds: number[];
 };
+
+export type NewOrderBody = {
+  userId: number,
+  productIds: number[]
+};

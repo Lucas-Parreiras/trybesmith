@@ -1,7 +1,7 @@
-type ServiceResponseErrorType = 'BAD_REQUEST' | 'UNAUTHORIZED' | 'UNPROCESSABLE_ENTITY';
+type ServResponseErrorType = 'BAD_REQUEST' | 'UNAUTHORIZED' | 'UNPROCESSABLE_ENTITY' | 'NOT_FOUND';
 
 export type ServiceResponseError = {
-  status: ServiceResponseErrorType,
+  status: ServResponseErrorType,
   data: { message: string }
 };
 
