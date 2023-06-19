@@ -2,8 +2,13 @@ import ProductModel,
 { ProductInputtableTypes } from '../database/models/product.model';
 import { ResProduct, Product } from '../types/Product';
 import { ServResponse } from '../types/ServiceResponse';
+import errorHandle from '../utils/helpersFunctions';
 
 async function addNewProduct(product: ProductInputtableTypes): Promise<ServResponse<ResProduct>> {
+  const errorResponse = errorHandle(product.name, product.price);
+
+  if (errorResponse) { return errorResponse; }
+
   const newProduct = await ProductModel.create(product);
 
   const { id, name, price } = newProduct.dataValues;
